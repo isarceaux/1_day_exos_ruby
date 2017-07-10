@@ -9,10 +9,13 @@ def jean_michel_data(corpus,dictionary)
 	corpus_tab = corpus.scan(/\w+/)
 
 	dictionary.each do |key_word|
-		count[key_word]=0 #initialisation
 			corpus_tab.each do |word|
-				if word == key_word 
-					count[key_word]+=1
+				if word == key_word
+					if count.has_key? key_word 
+						count[key_word]+=1
+					else
+						count[key_word]=1
+					end
 				end
 			end
 		end
