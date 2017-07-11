@@ -5,26 +5,30 @@ testword = gets.chomp
 puts "Donnez le nombre de lettre duquel vous voulez décaler"
 testnumber = gets.chomp.to_i
 
-def chiffre_de_cesar(stringtest,numberofletters)
+def chiffre_de_cesar(text_to_convert,numberofletters)
 	i=0
 	table=[]
-	codedstring =""
-	stringtest=stringtest.downcase
+	coded_text =""
+	text_to_convert=text_to_convert.downcase
 
-	while i< stringtest.length
-		if stringtest[i].ord+numberofletters <= 122
-			table << (stringtest[i].ord+numberofletters)
+	while i< text_to_convert.length
+		if text_to_convert[i].ord < 97
+			table << text_to_convert[i].ord
 		else
-			table << (stringtest[i].ord+numberofletters-122+96)
+			if text_to_convert[i].ord+numberofletters <= 122
+				table << (text_to_convert[i].ord+numberofletters)
+			else
+				table << (text_to_convert[i].ord+numberofletters-122+96)
+			end
 		end
 		i+=1
 	end
 
 	table.each do |letter|
-		codedstring+=letter.chr
+		coded_text+=letter.chr
 	end
 
-	return codedstring
+	return coded_text
 end
 
 puts chiffre_de_cesar(testword,testnumber)
